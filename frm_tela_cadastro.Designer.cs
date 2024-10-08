@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_tela_cadastro));
             label6 = new Label();
-            textBox6 = new TextBox();
+            txt_nome = new TextBox();
             label1 = new Label();
             label7 = new Label();
             label2 = new Label();
             label3 = new Label();
             pictureBox3 = new PictureBox();
-            textBox4 = new TextBox();
-            textBox1 = new TextBox();
-            textBox5 = new TextBox();
-            textBox3 = new TextBox();
-            button2 = new Button();
+            txt_usuario2 = new TextBox();
+            txt_telefone = new TextBox();
+            txt_senha2 = new TextBox();
+            txt_senha22 = new TextBox();
+            btn_cadastrar = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -57,15 +57,16 @@
             label6.TabIndex = 11;
             label6.Text = "NOME:";
             // 
-            // textBox6
+            // txt_nome
             // 
-            textBox6.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox6.Location = new Point(27, 58);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(415, 60);
-            textBox6.TabIndex = 10;
-            textBox6.TextAlign = HorizontalAlignment.Center;
+            txt_nome.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_nome.Location = new Point(27, 58);
+            txt_nome.Multiline = true;
+            txt_nome.Name = "txt_nome";
+            txt_nome.Size = new Size(415, 60);
+            txt_nome.TabIndex = 10;
+            txt_nome.TextAlign = HorizontalAlignment.Center;
+            txt_nome.TextChanged += textBox6_TextChanged;
             // 
             // label1
             // 
@@ -123,56 +124,61 @@
             pictureBox3.TabIndex = 22;
             pictureBox3.TabStop = false;
             // 
-            // textBox4
+            // txt_usuario2
             // 
-            textBox4.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(27, 167);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(415, 60);
-            textBox4.TabIndex = 23;
-            textBox4.TextAlign = HorizontalAlignment.Center;
+            txt_usuario2.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_usuario2.Location = new Point(27, 167);
+            txt_usuario2.Multiline = true;
+            txt_usuario2.Name = "txt_usuario2";
+            txt_usuario2.Size = new Size(415, 60);
+            txt_usuario2.TabIndex = 23;
+            txt_usuario2.TextAlign = HorizontalAlignment.Center;
+            txt_usuario2.TextChanged += txt_usuario2_TextChanged;
             // 
-            // textBox1
+            // txt_telefone
             // 
-            textBox1.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(27, 276);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(415, 60);
-            textBox1.TabIndex = 24;
-            textBox1.TextAlign = HorizontalAlignment.Center;
+            txt_telefone.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_telefone.Location = new Point(27, 276);
+            txt_telefone.Multiline = true;
+            txt_telefone.Name = "txt_telefone";
+            txt_telefone.Size = new Size(415, 60);
+            txt_telefone.TabIndex = 24;
+            txt_telefone.TextAlign = HorizontalAlignment.Center;
+            txt_telefone.TextChanged += txt_telefone_TextChanged;
             // 
-            // textBox5
+            // txt_senha2
             // 
-            textBox5.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(27, 427);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(415, 60);
-            textBox5.TabIndex = 25;
-            textBox5.TextAlign = HorizontalAlignment.Center;
+            txt_senha2.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_senha2.Location = new Point(27, 427);
+            txt_senha2.Multiline = true;
+            txt_senha2.Name = "txt_senha2";
+            txt_senha2.Size = new Size(415, 60);
+            txt_senha2.TabIndex = 25;
+            txt_senha2.TextAlign = HorizontalAlignment.Center;
+            txt_senha2.TextChanged += txt_senha2_TextChanged;
             // 
-            // textBox3
+            // txt_senha22
             // 
-            textBox3.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(27, 537);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(415, 60);
-            textBox3.TabIndex = 26;
-            textBox3.TextAlign = HorizontalAlignment.Center;
+            txt_senha22.Font = new Font("Leelawadee UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_senha22.Location = new Point(27, 537);
+            txt_senha22.Multiline = true;
+            txt_senha22.Name = "txt_senha22";
+            txt_senha22.Size = new Size(415, 60);
+            txt_senha22.TabIndex = 26;
+            txt_senha22.TextAlign = HorizontalAlignment.Center;
+            txt_senha22.TextChanged += txt_senha22_TextChanged;
             // 
-            // button2
+            // btn_cadastrar
             // 
-            button2.BackColor = Color.PaleTurquoise;
-            button2.Font = new Font("Sitka Subheading", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(499, 533);
-            button2.Name = "button2";
-            button2.Size = new Size(213, 64);
-            button2.TabIndex = 27;
-            button2.Text = "CADASTRAR:";
-            button2.UseVisualStyleBackColor = false;
+            btn_cadastrar.BackColor = Color.PaleTurquoise;
+            btn_cadastrar.Enabled = false;
+            btn_cadastrar.Font = new Font("Sitka Subheading", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_cadastrar.Location = new Point(499, 533);
+            btn_cadastrar.Name = "btn_cadastrar";
+            btn_cadastrar.Size = new Size(213, 64);
+            btn_cadastrar.TabIndex = 27;
+            btn_cadastrar.Text = "CADASTRAR:";
+            btn_cadastrar.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -192,18 +198,18 @@
             BackColor = Color.DarkCyan;
             ClientSize = new Size(744, 621);
             Controls.Add(pictureBox1);
-            Controls.Add(button2);
-            Controls.Add(textBox3);
-            Controls.Add(textBox5);
-            Controls.Add(textBox1);
-            Controls.Add(textBox4);
+            Controls.Add(btn_cadastrar);
+            Controls.Add(txt_senha22);
+            Controls.Add(txt_senha2);
+            Controls.Add(txt_telefone);
+            Controls.Add(txt_usuario2);
             Controls.Add(pictureBox3);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label7);
             Controls.Add(label1);
             Controls.Add(label6);
-            Controls.Add(textBox6);
+            Controls.Add(txt_nome);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frm_tela_cadastro";
             StartPosition = FormStartPosition.CenterScreen;
@@ -217,17 +223,17 @@
         #endregion
 
         private Label label6;
-        private TextBox textBox6;
+        private TextBox txt_nome;
         private Label label1;
         private Label label7;
         private Label label2;
         private Label label3;
         private PictureBox pictureBox3;
-        private TextBox textBox4;
-        private TextBox textBox1;
-        private TextBox textBox5;
-        private TextBox textBox3;
-        private Button button2;
+        private TextBox txt_usuario2;
+        private TextBox txt_telefone;
+        private TextBox txt_senha2;
+        private TextBox txt_senha22;
+        private Button btn_cadastrar;
         private PictureBox pictureBox1;
     }
 }

@@ -112,6 +112,7 @@
             txt_senha.Location = new Point(24, 207);
             txt_senha.Multiline = true;
             txt_senha.Name = "txt_senha";
+            txt_senha.PasswordChar = '*';
             txt_senha.Size = new Size(415, 60);
             txt_senha.TabIndex = 12;
             txt_senha.TextAlign = HorizontalAlignment.Center;
