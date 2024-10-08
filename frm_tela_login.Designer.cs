@@ -87,7 +87,7 @@
             // 
             btn_cadastrar.BackColor = Color.PaleTurquoise;
             btn_cadastrar.Font = new Font("Sitka Subheading", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_cadastrar.Location = new Point(123, 365);
+            btn_cadastrar.Location = new Point(124, 378);
             btn_cadastrar.Name = "btn_cadastrar";
             btn_cadastrar.Size = new Size(213, 64);
             btn_cadastrar.TabIndex = 10;
