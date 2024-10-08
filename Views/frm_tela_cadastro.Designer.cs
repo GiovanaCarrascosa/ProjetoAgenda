@@ -179,6 +179,7 @@
             btn_cadastrar.TabIndex = 27;
             btn_cadastrar.Text = "CADASTRAR:";
             btn_cadastrar.UseVisualStyleBackColor = false;
+            btn_cadastrar.Click += btn_cadastrar_Click;
             // 
             // pictureBox1
             // 
