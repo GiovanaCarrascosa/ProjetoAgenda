@@ -68,8 +68,8 @@ namespace ProjetoAgenda
 
             //criando o comando SQL para inserir o usuário 
 
-            string sql = $"INSERT INTO tbusuarios(nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha";
-                
+            string sql = $"INSERT INTO tbusuarios(nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha)";
+
             //criando o comando
             MySqlCommand comando = new MySqlCommand(sql, conexao);
 
@@ -88,6 +88,11 @@ namespace ProjetoAgenda
             this.Close();
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
