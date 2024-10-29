@@ -42,6 +42,7 @@
             txt_senha22 = new TextBox();
             btn_cadastrar = new Button();
             pictureBox1 = new PictureBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -200,19 +201,33 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(380, 28);
+            pictureBox1.Location = new Point(380, 11);
             pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(206, 203);
             pictureBox1.TabIndex = 28;
             pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.PaleTurquoise;
+            button1.Font = new Font("Sitka Subheading", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(389, 500);
+            button1.Margin = new Padding(2);
+            button1.Name = "button1";
+            button1.Size = new Size(185, 51);
+            button1.TabIndex = 29;
+            button1.Text = "CANCELAR";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // frm_tela_cadastro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkCyan;
-            ClientSize = new Size(595, 497);
+            ClientSize = new Size(595, 579);
+            Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(btn_cadastrar);
             Controls.Add(txt_senha22);
@@ -252,5 +267,6 @@
         private TextBox txt_senha22;
         private Button btn_cadastrar;
         private PictureBox pictureBox1;
+        private Button button1;
     }
 }

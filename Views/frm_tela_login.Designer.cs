@@ -44,7 +44,7 @@
             btn_entrar.BackColor = Color.PaleTurquoise;
             btn_entrar.Enabled = false;
             btn_entrar.Font = new Font("Sitka Subheading", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_entrar.Location = new Point(118, 238);
+            btn_entrar.Location = new Point(115, 243);
             btn_entrar.Margin = new Padding(2);
             btn_entrar.Name = "btn_entrar";
             btn_entrar.Size = new Size(137, 49);
