@@ -10,8 +10,9 @@ namespace ProjetoAgenda
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new frm_tela_login());
+            //ApplicationConfiguration.Initialize();
+            //Application.Run(new frm_tela_login());
+            Application.Run(new FrmTeste());
         }
     }
 }

@@ -12,39 +12,87 @@ namespace ProjetoAgenda.Controller
     {
         public bool AddUsuario(string nome, string usuario, string telefone, string senha)
         {
-            //cria a conexao, estou utilzando a classe ConexaoDB q esta dentro da pasta DATA
-            MySqlConnection conexao = ConexaoDB.CriarConexao();
 
-            //comando sql que sera executado
-            string sql = "INSERT INTO tbUsuarios (nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha);";
-
-            //abri a conexao com o banco
-            conexao.Open();
-
-            //esse cara é o responsavel por executar o comando sql
-            MySqlCommand comando = new MySqlCommand(sql, conexao);
-
-            //estou trocando o valor dos @ pelas informações que serao cadastradas
-            //essas informações vieram dos parametros da função
-            comando.Parameters.AddWithValue("@nome", nome);
-            comando.Parameters.AddWithValue("@usuario", usuario);
-            comando.Parameters.AddWithValue("@telefone", telefone);
-            comando.Parameters.AddWithValue("@senha", senha);
-
-            //executando no banco de dados
-            int linhasAfetadas = comando.ExecuteNonQuery();
-
-            conexao.Close();
-
-            if (linhasAfetadas > 0) 
+            try
             {
-                return true;
+                //cria a conexao, estou utilzando a classe ConexaoDB q esta dentro da pasta DATA
+                MySqlConnection conexao = ConexaoDB.CriarConexao();
+
+                //comando sql que sera executado
+                string sql = "INSERT INTO tbUsuarios (nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha);";
+
+                //abri a conexao com o banco
+                conexao.Open();
+
+                //esse cara é o responsavel por executar o comando sql
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                //estou trocando o valor dos @ pelas informações que serao cadastradas
+                //essas informações vieram dos parametros da função
+                comando.Parameters.AddWithValue("@nome", nome);
+                comando.Parameters.AddWithValue("@usuario", usuario);
+                comando.Parameters.AddWithValue("@telefone", telefone);
+                comando.Parameters.AddWithValue("@senha", senha);
+
+                //executando no banco de dados
+                int linhasAfetadas = comando.ExecuteNonQuery();
+
+                conexao.Close();
+
+                if (linhasAfetadas > 0)
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+
+                }
             }
-
-            else
+            catch (Exception erro)
             {
+                MessageBox.Show($"Erro ao cadastrar: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
+        }
+                public bool ValidarLogin(string usuario, string senha)
+                {
+
+            try {
+                    MySqlConnection conexao = ConexaoDB.CriarConexao();
+
+                    string sql = @" select * tbusuarios
+                                    where usuario = @usuario
+                                    and binary senha = @senha";
+
+                    conexao.Open();
+
+                    MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                    comando.Parameters.AddWithValue("@usuario", usuario);
+                    comando.Parameters.AddWithValue("@senha", senha);
+
+                    MySqlDataReader resultado = comando.ExecuteReader();
+
+                    if (resultado.Read())
+                    {
+                        conexao.Close();
+                        return true;
+                    }
+                    else
+                    {
+                        conexao.Close();
+                        return false;
+                    }
+
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao verificiar usuario.");
+                return false;
+            }
+
         }
     }
 }
