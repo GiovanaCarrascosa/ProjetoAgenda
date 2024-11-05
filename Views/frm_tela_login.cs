@@ -1,3 +1,6 @@
+using ProjetoAgenda.Controller;
+using ProjetoAgenda.Views;
+
 namespace ProjetoAgenda
 {
     public partial class frm_tela_login : Form
@@ -6,7 +9,7 @@ namespace ProjetoAgenda
         {
             InitializeComponent();
         }
-        
+
         //criando uma função
         // private = só o frm_login terá acesso | void = não vai retonar nada | 
         private void habilitarBotaoLogin()
@@ -37,6 +40,25 @@ namespace ProjetoAgenda
         private void txt_senha_TextChanged(object sender, EventArgs e)
         {
             habilitarBotaoLogin();
+        }
+
+        private void btn_entrar_Click(object sender, EventArgs e)
+        {
+            UsuarioController controleUsuario = new UsuarioController();
+
+            bool resultado = controleUsuario.ValidarLogin(txt_usuario.Text, txt_senha.Text);
+
+            MessageBox.Show(resultado.ToString());
+
+            if (resultado)
+            {
+                frm_telaprincipal formprincipal = new frm_telaprincipal();
+                formprincipal.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("não foi possivel efetuar o login");
+            }
         }
     }
 }

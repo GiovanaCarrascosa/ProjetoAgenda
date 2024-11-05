@@ -51,6 +51,7 @@
             btn_entrar.TabIndex = 0;
             btn_entrar.Text = "ENTRAR";
             btn_entrar.UseVisualStyleBackColor = false;
+            btn_entrar.Click += btn_entrar_Click;
             // 
             // label1
             // 

@@ -62,7 +62,7 @@ namespace ProjetoAgenda.Controller
             try {
                     MySqlConnection conexao = ConexaoDB.CriarConexao();
 
-                    string sql = @" select * tbusuarios
+                    string sql = @" select * from tbusuarios
                                     where usuario = @usuario
                                     and binary senha = @senha";
 
