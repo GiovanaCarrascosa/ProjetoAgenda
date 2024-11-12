@@ -99,7 +99,59 @@ namespace ProjetoAgenda.Controller
             {
                 conexao.Close();
             }
+
+        }
+
+        public bool DltCategoria(int cod_categoria)
+
+            {
+                MySqlConnection conexao = null;
+
+            try
+            {
+                //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
+                conexao = ConexaoDB.CriarConexao();
+
+                //comando sql que sera executado
+                string sql = "DELETE FROM categorias WHERE cod_categoria=@cod_categoria;";
+
+                //abri a conexao com o banco
+                conexao.Open();
+
+                //esse cara é o responsavel por executar o comando sql
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                    comando.Parameters.AddWithValue("@cod_categoria", cod_categoria);
+
+                    //executando no banco de dados
+                    int linhasAfetadas = comando.ExecuteNonQuery();
+
+                    conexao.Close();
+
+                    if (linhasAfetadas > 0)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show($"Erro ao excluir categoria: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                }
+
+                finally
+                {
+                    conexao.Close();
+                }
+
+            }
         }
           
     }
-}
+
