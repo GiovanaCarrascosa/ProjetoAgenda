@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Expr;
 using ProjetoAgenda.Data;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,10 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //comando sql que sera executado
-                string sql = "INSERT INTO tbUsuarios (nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha);";
+                string sql = $@"INSERT INTO tbUsuarios (nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha); 
+                create user '{@usuario}'@'%' identified by '{@senha}'; grant select, insert on *.* to '{usuario}'@'%';";
+
+               
 
                 //abri a conexao com o banco
                 conexao.Open();
@@ -56,6 +60,9 @@ namespace ProjetoAgenda.Controller
                 MessageBox.Show($"Erro ao cadastrar: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
+
+
+
         }
         public bool ValidarLogin(string usuario, string senha)
         {
@@ -137,7 +144,56 @@ namespace ProjetoAgenda.Controller
             }
 
         }
-            public bool DltUsuario(string usuario)
+        public bool DltUsuario(string usuario)
+
+        {
+            MySqlConnection conexao = null;
+
+            try
+            {
+                //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
+                conexao = ConexaoDB.CriarConexao();
+
+                //comando sql que sera executado
+                string sql = "DELETE FROM tbusuarios WHERE usuario=@usuario;";
+
+                //abri a conexao com o banco
+                conexao.Open();
+
+                //esse cara é o responsavel por executar o comando sql
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@usuario", usuario);
+
+                //executando no banco de dados
+                int linhasAfetadas = comando.ExecuteNonQuery();
+
+                conexao.Close();
+
+                if (linhasAfetadas > 0)
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao excluir usuario: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            finally
+            {
+                conexao.Close();
+            }
+
+        }
+        public bool AttSenha(string senha, string usuario)
 
             {
                 MySqlConnection conexao = null;
@@ -148,7 +204,7 @@ namespace ProjetoAgenda.Controller
                     conexao = ConexaoDB.CriarConexao();
 
                     //comando sql que sera executado
-                    string sql = "DELETE FROM tbusuarios WHERE usuario=@usuario;";
+                    string sql = @"update tbusuarios set senha = (@senha) where usuario = (@usuario);​";
 
                     //abri a conexao com o banco
                     conexao.Open();
@@ -156,12 +212,12 @@ namespace ProjetoAgenda.Controller
                     //esse cara é o responsavel por executar o comando sql
                     MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                    comando.Parameters.AddWithValue("@senha", senha);
                     comando.Parameters.AddWithValue("@usuario", usuario);
 
                     //executando no banco de dados
                     int linhasAfetadas = comando.ExecuteNonQuery();
 
-                    conexao.Close();
 
                     if (linhasAfetadas > 0)
                     {
@@ -176,7 +232,7 @@ namespace ProjetoAgenda.Controller
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show($"Erro ao excluir usuario: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show($"Erro ao alterar senha: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
 
