@@ -14,6 +14,8 @@ namespace ProjetoAgenda.VariableGlobal
         private static string _senha = null;
         private static string _nome = null;
 
+       
+
         //encapsulei a variavel para ter controle do q sera inserido ou pego
         public static string usuario
         {

@@ -29,9 +29,9 @@ namespace ProjetoAgenda.Views
         {
             string senha = txt_nova_senha.Text;
 
-            string usuario = Convert.ToString(dgv_usuario.SelectedRows[0].Cells[0].Value);
-            UsuarioController attsenha = new UsuarioController();
-            bool resultado = attsenha.AttSenha(senha, usuario);
+            string usuarios = Convert.ToString(dgv_usuario.SelectedRows[0].Cells[0].Value);
+            UsuarioController atualizarSenha = new UsuarioController();
+            bool resultado = atualizarSenha.AttSenha(senha, usuarios);
 
             if (resultado)
             {
@@ -43,6 +43,8 @@ namespace ProjetoAgenda.Views
             {
                 MessageBox.Show("Erro ao alterar senha");
             }
+
+            AttDataGrid();
 
         }
 
@@ -64,6 +66,7 @@ namespace ProjetoAgenda.Views
             UsuarioController categoria = new UsuarioController();
             bool resultado = categoria.DltUsuario(usuario);
 
+            AttDataGrid();
         }
 
         private void dgv_usuario_CellContentClick(object sender, DataGridViewCellEventArgs e)

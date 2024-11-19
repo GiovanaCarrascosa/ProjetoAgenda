@@ -32,7 +32,7 @@ create trigger trInsertCategoria
     on categorias
     for each row
 begin
-	set new.usuario = CURRENT_USR();
+	set new.usuario = CURRENT_USER();
 end;
 $$
 

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoAgenda.Data;
+using ProjetoAgenda.VariableGlobal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,6 +33,7 @@ namespace ProjetoAgenda.Controller
                 //estou trocando o valor dos @ pelas informações que serao cadastradas
                 //essas informações vieram dos parametros da função
                 comando.Parameters.AddWithValue("@categoria", categoria);
+               
 
                 //executando no banco de dados
                 int linhasAfetadas = comando.ExecuteNonQuery();
@@ -72,7 +74,7 @@ namespace ProjetoAgenda.Controller
                 conexao = ConexaoDB.CriarConexao();
 
                 //montei o select que retorna todas as categorias
-                string sql = @"select cod_categoria AS 'Código', categoria AS 'Categoria' from categorias;";
+                string sql = @"select cod_categoria AS 'Código', categoria AS 'Categoria', usuario AS 'Usuário' from categorias;";
 
                 //abri a conexao
                 conexao.Open();

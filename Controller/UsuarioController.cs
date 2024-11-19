@@ -204,9 +204,7 @@ namespace ProjetoAgenda.Controller
                     conexao = ConexaoDB.CriarConexao();
 
                     //comando sql que sera executado
-                    string sql = @"update tbusuarios set 
-senha = @senha 
-where usuario = @usuario;​";
+                    string sql = @"update tbusuarios set senha = (@senha) where usuario = (@usuario);​";
 
                     //abri a conexao com o banco
                     conexao.Open();
@@ -245,5 +243,5 @@ where usuario = @usuario;​";
 
             }
         }
-        }
+    }
     
