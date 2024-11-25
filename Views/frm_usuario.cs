@@ -36,7 +36,6 @@ namespace ProjetoAgenda.Views
             if (resultado)
             {
                 MessageBox.Show("Senha alterada com sucesso");
-
             }
 
             else

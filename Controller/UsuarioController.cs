@@ -193,55 +193,54 @@ namespace ProjetoAgenda.Controller
             }
 
         }
+
         public bool AttSenha(string senha, string usuario)
-
+        {
+            MySqlConnection conexao = null;
+            try
             {
-                MySqlConnection conexao = null;
+                //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
+                conexao = ConexaoDB.CriarConexao();
 
-                try
+                //comando sql que sera executado
+                string sql = @"update tbusuarios set senha = (@senha) where usuario = (@usuario);​";
+
+                //abri a conexao com o banco
+                conexao.Open();
+
+                //esse cara é o responsavel por executar o comando sql
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@senha", senha);
+                comando.Parameters.AddWithValue("@usuario", usuario);
+
+                //executando no banco de dados
+                int linhasAfetadas = comando.ExecuteNonQuery();
+
+
+                if (linhasAfetadas > 0)
                 {
-                    //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
-                    conexao = ConexaoDB.CriarConexao();
-
-                    //comando sql que sera executado
-                    string sql = @"update tbusuarios set senha = (@senha) where usuario = (@usuario);​";
-
-                    //abri a conexao com o banco
-                    conexao.Open();
-
-                    //esse cara é o responsavel por executar o comando sql
-                    MySqlCommand comando = new MySqlCommand(sql, conexao);
-
-                    comando.Parameters.AddWithValue("@senha", senha);
-                    comando.Parameters.AddWithValue("@usuario", usuario);
-
-                    //executando no banco de dados
-                    int linhasAfetadas = comando.ExecuteNonQuery();
-
-
-                    if (linhasAfetadas > 0)
-                    {
-                        return true;
-                    }
-
-                    else
-                    {
-                        return false;
-
-                    }
+                    return true;
                 }
-                catch (Exception erro)
+
+                else
                 {
-                    MessageBox.Show($"Erro ao alterar senha: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
-                }
 
-                finally
-                {
-                    conexao.Close();
                 }
 
             }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao alterar senha: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+
         }
     }
+}
     
