@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Expr;
 using ProjetoAgenda.Data;
+using ProjetoAgenda.VariableGlobal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -71,7 +72,7 @@ namespace ProjetoAgenda.Controller
             {
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
-                string sql = @" select * from tbusuarios
+                string sql = @" select nome, usuario, telefone, senha from tbusuarios
                                     where usuario = @usuario
                                     and binary senha = @senha";
 
@@ -86,6 +87,10 @@ namespace ProjetoAgenda.Controller
 
                 if (resultado.Read())
                 {
+                    UserSession.usuario = resultado.GetString("usuario");
+                    UserSession.nome = resultado.GetString("nome");
+                    UserSession.senha = resultado.GetString("senha");
+
                     conexao.Close();
                     return true;
                 }
@@ -203,7 +208,7 @@ namespace ProjetoAgenda.Controller
                 conexao = ConexaoDB.CriarConexao();
 
                 //comando sql que sera executado
-                string sql = @"update tbusuarios set senha = (@senha) where usuario = (@usuario);​";
+                string sql = @"UPDATE tbusuarios SET senha = @senha WHERE usuario = @usuario;";
 
                 //abri a conexao com o banco
                 conexao.Open();
@@ -239,6 +244,8 @@ namespace ProjetoAgenda.Controller
             {
                 conexao.Close();
             }
+
+
 
         }
     }

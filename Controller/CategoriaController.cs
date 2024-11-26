@@ -33,7 +33,7 @@ namespace ProjetoAgenda.Controller
                 //estou trocando o valor dos @ pelas informações que serao cadastradas
                 //essas informações vieram dos parametros da função
                 comando.Parameters.AddWithValue("@categoria", categoria);
-               
+
 
                 //executando no banco de dados
                 int linhasAfetadas = comando.ExecuteNonQuery();
@@ -74,7 +74,7 @@ namespace ProjetoAgenda.Controller
                 conexao = ConexaoDB.CriarConexao();
 
                 //montei o select que retorna todas as categorias
-                string sql = @"select cod_categoria AS 'Código', categoria AS 'Categoria', usuario AS 'Usuário' from categorias;";
+                string sql = @"select cod_categoria, categoria, usuario from categorias where usuario like '@usuario%';";
 
                 //abri a conexao
                 conexao.Open();
@@ -106,8 +106,8 @@ namespace ProjetoAgenda.Controller
 
         public bool DltCategoria(int cod_categoria)
 
-            {
-                MySqlConnection conexao = null;
+        {
+            MySqlConnection conexao = null;
 
             try
             {
@@ -123,37 +123,84 @@ namespace ProjetoAgenda.Controller
                 //esse cara é o responsavel por executar o comando sql
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
-                    comando.Parameters.AddWithValue("@cod_categoria", cod_categoria);
+                comando.Parameters.AddWithValue("@cod_categoria", cod_categoria);
 
-                    //executando no banco de dados
-                    int linhasAfetadas = comando.ExecuteNonQuery();
+                //executando no banco de dados
+                int linhasAfetadas = comando.ExecuteNonQuery();
 
-                    conexao.Close();
+                conexao.Close();
 
-                    if (linhasAfetadas > 0)
-                    {
-                        return true;
-                    }
-
-                    else
-                    {
-                        return false;
-
-                    }
-                }
-                catch (Exception erro)
+                if (linhasAfetadas > 0)
                 {
-                    MessageBox.Show($"Erro ao excluir categoria: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao excluir categoria: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            finally
+            {
+                conexao.Close();
+            }
+
+        }
+
+
+        public bool AttCategoria(string categoria, int cod_categoria)
+        {
+            MySqlConnection conexao = null;
+            try
+            {
+                //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
+                conexao = ConexaoDB.CriarConexao();
+
+                //comando sql que sera executado
+                string sql = @"UPDATE categorias SET categoria = @categoria WHERE cod_categoria = @cod_categoria;";
+
+                //abri a conexao com o banco
+                conexao.Open();
+
+                //esse cara é o responsavel por executar o comando sql
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@categoria", categoria);
+                comando.Parameters.AddWithValue("@cod_categoria", cod_categoria);
+
+                //executando no banco de dados
+                int linhasAfetadas = comando.ExecuteNonQuery();
+
+
+                if (linhasAfetadas > 0)
+                {
+                    return true;
+                }
+
+                else
+                {
                     return false;
                 }
 
-                finally
-                {
-                    conexao.Close();
-                }
-
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao alterar categoria: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
             }
         }
-          
+
     }
+}
 

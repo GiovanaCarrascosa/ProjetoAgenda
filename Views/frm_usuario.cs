@@ -29,9 +29,9 @@ namespace ProjetoAgenda.Views
         {
             string senha = txt_nova_senha.Text;
 
-            string usuarios = Convert.ToString(dgv_usuario.SelectedRows[0].Cells[0].Value);
+            string usuario = Convert.ToString(dgv_usuario.SelectedRows[0].Cells[0].Value);
             UsuarioController atualizarSenha = new UsuarioController();
-            bool resultado = atualizarSenha.AttSenha(senha, usuarios);
+            bool resultado = atualizarSenha.AttSenha(senha, usuario);
 
             if (resultado)
             {

@@ -93,13 +93,28 @@ namespace ProjetoAgenda.Views
             AttDataGrid();
 
 
+        }
 
 
+        private void btn_alterar_categoria_Click_1(object sender, EventArgs e)
+        {
+            string categoria_alterada = txt_categoria.Text;
 
+            int cod_categoria = Convert.ToInt32(dgvCategoria.SelectedRows[0].Cells[0].Value);
+            CategoriaController atualizarCategoria = new CategoriaController();
+            bool resultado = atualizarCategoria.AttCategoria(categoria_alterada, cod_categoria);
 
+            if (resultado)
+            {
+                MessageBox.Show("Categoria alterada com sucesso!");
+            }
 
+            else
+            {
+                MessageBox.Show("Erro ao alterar categoria!");
+            }
 
-
+            AttDataGrid();
         }
     }
 }
