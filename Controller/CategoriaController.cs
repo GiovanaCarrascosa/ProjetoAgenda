@@ -71,16 +71,20 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //inserindo a conexao usando a conexaodb q eu ja havia criado
-                conexao = ConexaoDB.CriarConexao();
+                conexao = ConexaoDB.CriarConexao(UserSession.usuario,UserSession.senha);
 
                 //montei o select que retorna todas as categorias
-                string sql = @"select cod_categoria, categoria, usuario from categorias where usuario like '@usuario%';";
+                string sql = @"select cod_categoria, categoria, usuario from categorias where usuario = User();";
 
                 //abri a conexao
                 conexao.Open();
 
                 //criei um adaptador
                 MySqlDataAdapter adaptador = new MySqlDataAdapter(sql, conexao);
+                //MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                
+
 
                 //criei uma tabela vazia
                 DataTable tabela = new DataTable();

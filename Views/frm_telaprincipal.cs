@@ -38,5 +38,11 @@ namespace ProjetoAgenda.Views
             frm_usuario telausuario = new frm_usuario();
             telausuario.ShowDialog();
         }
+
+        private void agendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_tela_agenda telaagenda = new frm_tela_agenda();
+            telaagenda.ShowDialog();
+        }
     }
 }

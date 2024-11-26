@@ -35,6 +35,7 @@
             cadastrarToolStripMenuItem = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
             usuárioToolStripMenuItem = new ToolStripMenuItem();
+            agendaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             // 
             // cadastrarToolStripMenuItem
             // 
-            cadastrarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriasToolStripMenuItem, usuárioToolStripMenuItem });
+            cadastrarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriasToolStripMenuItem, usuárioToolStripMenuItem, agendaToolStripMenuItem });
             cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
             cadastrarToolStripMenuItem.Size = new Size(224, 30);
             cadastrarToolStripMenuItem.Text = "Cadastrar";
@@ -93,6 +94,13 @@
             usuárioToolStripMenuItem.Size = new Size(224, 30);
             usuárioToolStripMenuItem.Text = "Usuário";
             usuárioToolStripMenuItem.Click += usuárioToolStripMenuItem_Click;
+            // 
+            // agendaToolStripMenuItem
+            // 
+            agendaToolStripMenuItem.Name = "agendaToolStripMenuItem";
+            agendaToolStripMenuItem.Size = new Size(224, 30);
+            agendaToolStripMenuItem.Text = "Agenda";
+            agendaToolStripMenuItem.Click += agendaToolStripMenuItem_Click;
             // 
             // frm_telaprincipal
             // 
@@ -120,5 +128,6 @@
         private ToolStripMenuItem cadastrarToolStripMenuItem;
         private ToolStripMenuItem categoriasToolStripMenuItem;
         private ToolStripMenuItem usuárioToolStripMenuItem;
+        private ToolStripMenuItem agendaToolStripMenuItem;
     }
 }
