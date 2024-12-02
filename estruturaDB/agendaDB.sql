@@ -26,6 +26,15 @@ create table tblog(
     descricao varchar (300) 
 );
 
+-- criando tabela de contato
+create table tbcontatos(
+	cod_contato int auto_increment primary key,
+    nome varchar (20),
+    telefone varchar (15),
+    categoria varchar (40),
+    usuario varchar (30)
+);
+
 -- criando o trigger para inserir categoria na tabela
 delimiter $$
 
@@ -106,6 +115,42 @@ begin
 end;
 $$
 
+delimiter ;
+
+-- criando o trigger para inserir contatos na tabela
+delimiter $$
+
+create trigger trInsertContato
+	before
+    insert
+    on tbcontatos
+    for each row
+begin
+	set new.usuario = USER();
+end;
+$$
+
+delimiter ;
+
+-- criando o trigger para inserir os contatos na tabela de log
+delimiter $$
+CREATE TRIGGER trInsertContatos
+after insert ON tbcontatos
+FOR EACH ROW
+
+begin
+	insert into tblog
+		(usuario,
+         data_alterada,
+         descricao)
+	values 
+		(user(),
+         current_timestamp(),
+         concat("O contato", new.nome, "foi inserida.")
+         );
+         
+end;
+$$
 delimiter ;
 
 select * from categorias;

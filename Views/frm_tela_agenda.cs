@@ -18,6 +18,14 @@ namespace ProjetoAgenda.Views
             InitializeComponent();
         }
 
+        private void AttDataGrid()
+        {
+            CategoriaController controleCategoria = new CategoriaController();
+            DataTable tabela = controleCategoria.GetCategorias();
+            dgv_contato.DataSource = tabela;
+        }
+
+
         private void frm_tela_agenda_Load(object sender, EventArgs e)
         {
             CategoriaController controleCategoria = new CategoriaController();
@@ -32,5 +40,36 @@ namespace ProjetoAgenda.Views
         {
             this.Close();
         }
+
+        private void btn_cadastrar_Click(object sender, EventArgs e)
+        {
+            string contato = txt_contato.Text;
+
+
+            //instanciando o objeto UsuarioController
+            ContatoController controleContato = new ContatoController();
+
+            //inserindo o usuario
+            bool resultado = controleContato.AddContato(nome);
+
+            AttDataGrid();
+
+            if (resultado)
+            {
+                MessageBox.Show("Cadastro efetuado com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show("Não foi possivel cadastrar");
+            }
+
+
+        }
+
+        //private void AttDataGrid()
+        //{
+        //    throw new NotImplementedException();
+      //}
     }
+    
 }
