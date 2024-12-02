@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoAgenda.VariableGlobal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,5 +45,12 @@ namespace ProjetoAgenda.Views
             frm_tela_agenda telaagenda = new frm_tela_agenda();
             telaagenda.ShowDialog();
         }
+
+        private void frm_telaprincipal_Load(object sender, EventArgs e)
+        {
+            lblmensagem.Text = $"Seja bem vinde {UserSession.nome}!";
+        }
+
+   
     }
 }

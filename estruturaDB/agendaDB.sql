@@ -111,3 +111,4 @@ delimiter ;
 select * from categorias;
 select * from tblog;
 select * from tbusuarios;
+drop trigger trInsertCategoria;

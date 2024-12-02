@@ -116,7 +116,7 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
-                conexao = ConexaoDB.CriarConexao();
+                conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //comando sql que sera executado
                 string sql = "DELETE FROM categorias WHERE cod_categoria=@cod_categoria;";
@@ -165,7 +165,7 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
-                conexao = ConexaoDB.CriarConexao();
+                conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //comando sql que sera executado
                 string sql = @"UPDATE categorias SET categoria = @categoria WHERE cod_categoria = @cod_categoria;";
