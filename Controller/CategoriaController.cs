@@ -19,7 +19,7 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //cria a conexao, estou utilizando a classe ConexaoDB q esta dentro da pasta DATA
-                conexao = ConexaoDB.CriarConexao();
+                conexao = ConexaoDB.CriarConexao(UserSession.usuario,UserSession.senha);
 
                 //comando sql que sera executado
                 string sql = "INSERT INTO categorias (categoria) VALUES (@categoria);";
@@ -74,7 +74,7 @@ namespace ProjetoAgenda.Controller
                 conexao = ConexaoDB.CriarConexao(UserSession.usuario,UserSession.senha);
 
                 //montei o select que retorna todas as categorias
-                string sql = @"select cod_categoria, categoria, usuario from categorias where usuario = User();";
+                string sql = $@"select cod_categoria, categoria, usuario from categorias where usuario LIKE '{UserSession.usuario}@%'";
 
                 //abri a conexao
                 conexao.Open();

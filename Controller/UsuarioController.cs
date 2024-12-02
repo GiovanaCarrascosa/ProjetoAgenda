@@ -23,7 +23,7 @@ namespace ProjetoAgenda.Controller
 
                 //comando sql que sera executado
                 string sql = $@"INSERT INTO tbUsuarios (nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha); 
-                create user '{@usuario}'@'%' identified by '{@senha}'; grant select, insert on *.* to '{usuario}'@'%';";
+                create user '{@usuario}'@'%' identified by '{@senha}'; grant select, insert, delete, update on dbagenda.* to '{usuario}'@'%';";
 
                
 

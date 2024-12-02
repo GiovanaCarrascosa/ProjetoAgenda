@@ -29,13 +29,13 @@ create table tblog(
 -- criando o trigger para inserir categoria na tabela
 delimiter $$
 
-create trigger trInsertCategoria
+create trigger trInsertCategorias
 	before
     insert
     on categorias
     for each row
 begin
-	set new.usuario = CURRENT_USER();
+	set new.usuario = USER();
 end;
 $$
 
