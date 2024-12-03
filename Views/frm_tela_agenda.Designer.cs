@@ -34,7 +34,7 @@
             btn_alterar = new Button();
             txt_contato = new TextBox();
             groupBox1 = new GroupBox();
-            textBox1 = new TextBox();
+            txt_telefone = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -64,6 +64,7 @@
             btn_excluir.TabIndex = 1;
             btn_excluir.Text = "Excluir";
             btn_excluir.UseVisualStyleBackColor = false;
+            btn_excluir.Click += btn_excluir_Click;
             // 
             // btn_cadastrar
             // 
@@ -101,7 +102,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txt_telefone);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
@@ -119,13 +120,13 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Adicionar Contato:";
             // 
-            // textBox1
+            // txt_telefone
             // 
-            textBox1.Location = new Point(31, 216);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(324, 38);
-            textBox1.TabIndex = 6;
+            txt_telefone.Location = new Point(31, 216);
+            txt_telefone.Multiline = true;
+            txt_telefone.Name = "txt_telefone";
+            txt_telefone.Size = new Size(324, 38);
+            txt_telefone.TabIndex = 6;
             // 
             // label3
             // 
@@ -165,6 +166,7 @@
             dgv_contato.Margin = new Padding(3, 2, 3, 2);
             dgv_contato.Name = "dgv_contato";
             dgv_contato.RowHeadersWidth = 51;
+            dgv_contato.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_contato.Size = new Size(335, 313);
             dgv_contato.TabIndex = 6;
             // 
@@ -213,7 +215,7 @@
         private Label label1;
         private DataGridView dgv_contato;
         private Button button4;
-        private TextBox textBox1;
+        private TextBox txt_telefone;
         private Label label3;
     }
 }

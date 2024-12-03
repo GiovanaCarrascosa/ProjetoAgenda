@@ -20,21 +20,29 @@ namespace ProjetoAgenda.Views
 
         private void AttDataGrid()
         {
-            CategoriaController controleCategoria = new CategoriaController();
-            DataTable tabela = controleCategoria.GetCategorias();
+            ContatoController controleCategoria = new ContatoController();
+            DataTable tabela = controleCategoria.GetContato();
             dgv_contato.DataSource = tabela;
         }
 
 
         private void frm_tela_agenda_Load(object sender, EventArgs e)
         {
-            CategoriaController controleCategoria = new CategoriaController();
-            DataTable tabela = controleCategoria.GetCategorias();
-            cmbCategoria.DataSource = tabela;
-            cmbCategoria.DisplayMember = "categoria";
-            cmbCategoria.DisplayMember = "cod_categoria";
+            ContatoController controleContato = new ContatoController();
+            DataTable tabela = controleContato.GetContato();
+            dgv_contato.DataSource = tabela;
 
         }
+
+        //private void frm_tela_agenda_Load(object sender, EventArgs e)
+        //{
+        //    ContatoController controleContato = new ContatoController();
+        //    DataTable tabela = controleContato.GetCategorias();
+        //    cmbCategoria.DataSource = tabela;
+        //    cmbCategoria.DisplayMember = "categoria";
+        //    cmbCategoria.DisplayMember = "cod_categoria";
+
+        //}
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -44,15 +52,16 @@ namespace ProjetoAgenda.Views
         private void btn_cadastrar_Click(object sender, EventArgs e)
         {
             string contato = txt_contato.Text;
-
+            string telefone = txt_telefone.Text;
+            string categoria = cmbCategoria.Text;
 
             //instanciando o objeto UsuarioController
             ContatoController controleContato = new ContatoController();
 
-            //inserindo o usuario
-            bool resultado = controleContato.AddContato(nome);
 
-            AttDataGrid();
+            //inserindo o usuario
+            bool resultado = controleContato.AddContato(contato, telefone, categoria);
+
 
             if (resultado)
             {
@@ -62,14 +71,24 @@ namespace ProjetoAgenda.Views
             {
                 MessageBox.Show("Não foi possivel cadastrar");
             }
+            AttDataGrid();
 
 
+        }
+
+        private void btn_excluir_Click(object sender, EventArgs e)
+        {
+            int codigo = Convert.ToInt32(dgv_contato.SelectedRows[0].Cells[0].Value);
+            ContatoController contato = new ContatoController();
+            bool resultado = contato.DltContato(codigo);
+
+            AttDataGrid();
         }
 
         //private void AttDataGrid()
         //{
         //    throw new NotImplementedException();
-      //}
+        //}
     }
-    
+
 }

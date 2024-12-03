@@ -92,7 +92,6 @@ namespace ProjetoAgenda.Views
 
             AttDataGrid();
 
-
         }
 
 
