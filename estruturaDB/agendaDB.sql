@@ -1,7 +1,10 @@
+
 -- criando e usando a dbagenda
 create database dbagenda;
 use dbagenda;
 
+
+-- tabelas
 -- criando tabela de usuarios
 create table tbusuarios(
 
@@ -35,6 +38,11 @@ create table tbcontatos(
     usuario varchar (30)
 );
 
+
+
+
+
+--categorias
 -- criando o trigger para inserir categoria na tabela
 delimiter $$
 
@@ -117,6 +125,9 @@ $$
 
 delimiter ;
 
+
+
+-- contatos
 -- criando o trigger para inserir contatos na tabela
 delimiter $$
 
@@ -152,6 +163,54 @@ begin
 end;
 $$
 delimiter ;
+
+-- criando o trigger de deletar contato da tabela e adicionar na tabela de log
+delimiter $$
+
+CREATE TRIGGER trlogcontatodelete
+after delete ON tbcontatos
+FOR EACH ROW
+
+begin
+	insert into tblog
+		(usuario,
+         data_alterada,
+         descricao)
+	values 
+		(user(),
+         current_timestamp(),
+         concat("O contato", old.nome, "foi excluido.")
+         );
+         
+end;
+$$
+
+delimiter ;
+
+-- criando o trigger para alterar contato e add na tabela de log
+delimiter $$
+
+CREATE TRIGGER trlogcontatoupdate
+after update ON tbcontatos
+FOR EACH ROW
+
+begin
+	insert into tblog
+		(usuario,
+         data_alterada,
+         descricao)
+	values 
+		(user(),
+         current_timestamp(),
+         concat("O contato", old.nome, "foi alterado.")
+         );
+         
+end;
+$$
+
+delimiter ;
+
+
 
 select * from categorias;
 select * from tblog;

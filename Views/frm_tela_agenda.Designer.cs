@@ -90,6 +90,7 @@
             btn_alterar.TabIndex = 3;
             btn_alterar.Text = "Alterar";
             btn_alterar.UseVisualStyleBackColor = false;
+            btn_alterar.Click += btn_alterar_Click;
             // 
             // txt_contato
             // 

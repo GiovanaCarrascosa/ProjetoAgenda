@@ -28,9 +28,11 @@ namespace ProjetoAgenda.Views
 
         private void frm_tela_agenda_Load(object sender, EventArgs e)
         {
-            ContatoController controleContato = new ContatoController();
-            DataTable tabela = controleContato.GetContato();
-            dgv_contato.DataSource = tabela;
+            CategoriaController controleCategoria = new CategoriaController();
+            DataTable tabela = controleCategoria.GetCategorias();
+            cmbCategoria.DataSource = tabela;
+            cmbCategoria.DisplayMember = "categoria";
+            AttDataGrid();
 
         }
 
@@ -81,6 +83,20 @@ namespace ProjetoAgenda.Views
             int codigo = Convert.ToInt32(dgv_contato.SelectedRows[0].Cells[0].Value);
             ContatoController contato = new ContatoController();
             bool resultado = contato.DltContato(codigo);
+
+            AttDataGrid();
+        }
+
+        private void btn_alterar_Click(object sender, EventArgs e)
+        {
+            int cod_contato = Convert.ToInt32(dgv_contato.SelectedRows[0].Cells[0].Value);
+            string contato = txt_contato.Text;
+            string telefone = txt_telefone.Text;
+            string categoria = cmbCategoria.Text;
+
+            
+            ContatoController atualizarContato = new ContatoController();
+            atualizarContato.AttContato(cod_contato, contato, telefone, categoria);
 
             AttDataGrid();
         }

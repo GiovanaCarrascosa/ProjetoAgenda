@@ -162,7 +162,7 @@ namespace ProjetoAgenda.Controller
 
         }
 
-        public bool AttContato(string nome, string telefone, string categoria)
+        public bool AttContato(int cod_contato, string nome, string telefone, string categoria)
         {
             MySqlConnection conexao = null;
             try
@@ -171,7 +171,7 @@ namespace ProjetoAgenda.Controller
                 conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //comando sql que sera executado
-                string sql = @"UPDATE categorias SET categoria = @categoria WHERE cod_categoria = @cod_categoria;";
+                string sql = "UPDATE tbcontatos SET nome = @nome, telefone = @telefone, categoria = @categoria WHERE cod_contato = @cod_contato;";
 
                 //abri a conexao com o banco
                 conexao.Open();
@@ -179,8 +179,11 @@ namespace ProjetoAgenda.Controller
                 //esse cara é o responsavel por executar o comando sql
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                comando.Parameters.AddWithValue("@cod_contato", cod_contato);
+                comando.Parameters.AddWithValue("@nome", nome);
+                comando.Parameters.AddWithValue("@telefone", telefone);
                 comando.Parameters.AddWithValue("@categoria", categoria);
-                comando.Parameters.AddWithValue("@cod_categoria", cod_categoria);
+                
 
                 //executando no banco de dados
                 int linhasAfetadas = comando.ExecuteNonQuery();
