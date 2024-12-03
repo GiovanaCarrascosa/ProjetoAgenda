@@ -72,7 +72,7 @@ begin
 	values 
 		(user(),
          current_timestamp(),
-         concat("A categoria", new.categoria, "foi inserida.")
+         concat("A categoria ", new.categoria, " foi inserida.")
          );
          
 end;
@@ -94,7 +94,7 @@ begin
 	values 
 		(user(),
          current_timestamp(),
-         concat("A categoria", old.categoria, "foi excluida.")
+         concat("A categoria ", old.categoria, " foi excluida.")
          );
          
 end;
@@ -117,7 +117,7 @@ begin
 	values 
 		(user(),
          current_timestamp(),
-         concat("A categoria", old.categoria, "foi alterada.")
+         concat("A categoria ", old.categoria, " foi alterada.")
          );
          
 end;
@@ -157,7 +157,7 @@ begin
 	values 
 		(user(),
          current_timestamp(),
-         concat("O contato", new.nome, "foi inserida.")
+         concat("O contato ", new.nome, " foi inserido.")
          );
          
 end;
@@ -179,7 +179,7 @@ begin
 	values 
 		(user(),
          current_timestamp(),
-         concat("O contato", old.nome, "foi excluido.")
+         concat("O contato ", old.nome, " foi excluido.")
          );
          
 end;
@@ -202,7 +202,7 @@ begin
 	values 
 		(user(),
          current_timestamp(),
-         concat("O contato", old.nome, "foi alterado.")
+         concat("O contato ", old.nome, " foi alterado.")
          );
          
 end;
